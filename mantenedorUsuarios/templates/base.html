@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title%} {% endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Stryle.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <div class="row" id="header-top">
+                <!-- todo el contenido debe ir dentro de columnas(col) -->
+                <!-- Y las columnas deben ir dentro de las filas (row) -->
+
+                <div class="col-12" id="container-logo">
+                    <img src="{% static 'img//logohead.png' %}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="row" id="header-bottom">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark img-fluid" id="nav-menu">
+                        <a class="navbar-brand" href="Index.html">Inicio</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="template/oferta.html">Catalogo <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="template/formulario.html">Registrate</a>
+                                </li>
+
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+
+        {% block content %} {% endblock %}
+
+        <div class="footer">
+            <div class="row" id="contacto">
+                <div class="col-12">
+                    <div id="direcciones">
+                        <h2>Contactanos!</h2>
+                        <p>email:xxxxxx@gmail.com</p>
+                        <p>Fono :+569xxxxxxxx</p>
+                    </div>
+                    <div id="redes" class="row">
+                        <div class="col-2">
+                            <img src="img/face.png" class="img-fluid" alt="">
+
+                        </div>
+                        <div class="col-2">
+                            <img src="img/Whatsapp.png" class="img-fluid" alt="">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/librerias_jquery/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/librerias_bootstrap/bootstrap.min.js"></script>
+
+</body>
+
+</html>

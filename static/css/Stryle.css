@@ -1,0 +1,37 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.container {
+  width: 100%;
+}
+
+#Container-logo {
+  background-color: #f2f2f2;
+}
+/* #reef {
+  color: black;
+}
+#reefp {
+  color: black;
+} */
+
+#footer {
+  justify-content: space-between;
+  width: 100%;
+}
+
+#about {
+  width: 100%;
+
+  text-align: center;
+}
+
+#container-logo img {
+  background-color: yellow;
+}
+
+.footer {
+  background-color: indigo;
+}

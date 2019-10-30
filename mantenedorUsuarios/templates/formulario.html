@@ -1,0 +1,159 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario Registro</title>
+    <!-- Estilo bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
+    <!-- Mis Estilo -->
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+
+    <!-- Jquery -->
+    <script src="js/librerias_jquery/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/librerias_bootstrap/bootstrap.min.js"></script>
+
+    <!-- Validate -->
+    <script src="js/librerias_jquery/jquery.validate.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nav-top row">
+                <!-- todo el contenido debe ir dentro de columnas(col) -->
+                <!-- Y las columnas deben ir dentro de las filas (row) -->
+                <div class="col-12" id="encabezado">
+                    <img src="../img//logohead.png" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="nav-bottom row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark img-fluid">
+                        <a class="navbar-brand" href="../Index.html">Inicio</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="oferta.html">Catalogo <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="formulario.html">Registrate</a>
+                                </li>
+
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Buscar"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        <div class="main">
+            <form id="formulario" action="#" method="POST">
+                {% csrf_token %}
+
+                <div class="header-form">
+                    <h1>Registro de Usuarios</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sint qui velit aliquid
+                        nesciunt
+                        ullam doloremque adipisci a doloribus, ab ducimus molestiae maxime? Dolorem ullam molestias
+                        sunt
+                        iste voluptate distinctio!
+                    </p>
+                    <hr>
+                </div>
+
+                <div class="form-group">
+                    <label for="rut">Run</label>
+                    <input type="text" class="form-control" name="run" id="rut" required oninput="checkRut(this)"
+                        placeholder="Ingrese RUT">
+                </div>
+                <div class="form-group">
+                    <label for="txtnombre">Nombre Completo</label>
+                    <div class="input-group">
+                        <div class="container-nombre">
+                            <input type="text" class="form-control" id="txtnombre" name="primer_nombre"
+                                placeholder="Ejemplo juan antonio">
+                        </div>
+                        <div class="container-apellido">
+                            <input type="text" class="form-control" id="txtapellido" name="segundo_nombre"
+                                placeholder="Ejemplo machuca allende">
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtemail">Email</label>
+                    <input type="email" class="form-control" id="txtemail" name="txtemail"
+                        placeholder="Ejemplo adam.pds@yahoo.com">
+                </div>
+                <div class="form-group">
+                    <label for="txttelefono">Telefono</label>
+                    <input type="tel" class="form-control" name="txttelefono" id="txttelefono"
+                        placeholder="Ejemplo 9 79428203" maxlength="9">
+                </div>
+                <div class="container-select">
+                    <div class="form-group" id="container-fecha">
+                        <label for="txtfecha_nac">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" name="txtfecha_nac" id="txtfecha_nac" max="31-12-2001">
+                    </div>
+                    <div class="form-group" id="container-region">
+                        <label for="regiones">Region</label>
+                        <select class="custom-select" id="regiones" name="txtregion">
+
+                        </select>
+                    </div>
+                    <div class="form-group" id="container-comuna">
+                        <label for="comunas">Comuna</label>
+                        <select class="custom-select" id="comunas" name="txtcomuna">
+
+                        </select>
+                    </div>
+                    <div class="form-group" id="container-vivienda">
+                        <label for="txtvivienda">Vivienda</label>
+                        <select class="custom-select" id="txtvivienda" name="txtvivienda">
+                            <option selected="">Seleccione Tipo vivienda</option>
+                            <option value="1">Casa con patio Grande</option>
+                            <option value="2">Casa con patio pequeño</option>
+                            <option value="3">Casa sin patio</option>
+                            <option value="4">Departamento</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="container-button">
+                    <button type="submit" class="btn btn-outline-light">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Validar Rut -->
+    <script src="js/validar_rut.js"></script>
+
+    <!-- validador -->
+    <script src="js/validador.js"></script>
+    <!-- regiones y  comunas -->
+    <script src="js/regiones-comunas.js"></script>
+
+</body>
+
+</html>

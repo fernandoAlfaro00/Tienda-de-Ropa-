@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  min-width: 300px;
+  width: 100%;
+}
+
+.main {
+  border: 1px solid gray;
+  margin: 10% 10%;
+  padding: 10% 10%;
+}
+
+.container-button {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-form {
+  width: 100%;
+}
+
+.header-form h1 {
+  text-align: center;
+}
+
+.input-group {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-nombre,
+.container-apellido {
+  width: 48%;
+}
+
+.container-select {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#container-fecha,
+#container-region,
+#container-comuna,
+#container-vivienda {
+  width: 48%;
+}
+
+hr {
+  background-color: white;
+}
+body {
+  background-color: black;
+}
+.main {
+  color: white;
+  background-color: rgba(0, 0, 0, 80%);
+}
+
+@media screen and (max-width: 768px) {
+  .container-nombre {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .container-apellido {
+    width: 100%;
+  }
+
+  #container-fecha,
+  #container-region,
+  #container-comuna,
+  #container-vivienda {
+    width: 100%;
+  }
+}
