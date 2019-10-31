@@ -18,7 +18,7 @@ def agregar_productos(request):
             model_instance = form.save(commit=False)
             model_instance.save()
             
-            return redirect('AgregarProductos')
+            return redirect('/AgregarProductos')
 
     else:
         form  = ProductoForm()

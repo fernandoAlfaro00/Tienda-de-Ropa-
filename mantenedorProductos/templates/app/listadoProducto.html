@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Listado</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <H1>Productos</H1>
-
 
     {% for p in productos %}
 
     {{ p.color }}
     {{ p.nombre }}
     {{ p.precio_venta }}
-    <img src="{{ p.imagen.url }}" alt="">
+    <img src="{{ p.imagen.url }}" alt="" />
 
     {% endfor%}
-</body>
-
+  </body>
 </html>
