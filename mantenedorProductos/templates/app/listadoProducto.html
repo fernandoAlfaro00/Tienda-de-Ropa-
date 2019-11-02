@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Listado</title>
-  </head>
 
-  <body>
-    <H1>Productos</H1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Listado</title>
+</head>
 
-    {% for p in productos %}
+<body>
+  <H1>Productos</H1>
 
-    {{ p.color }}
-    {{ p.nombre }}
-    {{ p.precio_venta }}
-    <img src="{{ p.imagen.url }}" alt="" />
+  {% for p in productos %}
 
-    {% endfor%}
-  </body>
+  <input type="color" name="{{ p.color }}">
+  {{ p.nombre }}
+  {{ p.precio_venta }}
+  <img src="{{ p.imagen.url }}" alt="" />
+  <a href="/eliminarProductos/{{p.id}}">borrar</a>
+  {% endfor%}
+
+  <form method="POST">
+    precio :
+    <input type="text" name="filtro" />
+    <input type="submit" value="Filtrar">
+    {% csrf_token %}
+  </form>
+
+</body>
+
 </html>

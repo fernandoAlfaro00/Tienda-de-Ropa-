@@ -9,14 +9,13 @@
 </head>
 
 <body>
-    <form action="" method="POST">
+    <h1>Editar Productos</h1>
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
-        {{ form.usuario }}
-
-        <button type="submit">GRABAR</button>
-
+        {{ form.as_table }}
+        <input type="submit" value="register" />
     </form>
+    <a href="{% url 'listadoProductos' %}">Ir al Listado</a>
 </body>
 
 </html>

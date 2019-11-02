@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mantenedorUsuarios.apps.MantenedorusuariosConfig',
     'mantenedorProductos.apps.MantenedorproductosConfig',
     'phonenumber_field',
+    'colorful',
 ]
 
 MIDDLEWARE = [
