@@ -13,7 +13,7 @@
     <h1>Agregar Productos</h1>
     <form method="POST" action="#" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_table }}
+        {{ form.as_p }}
         <input type="submit" value="register" />
     </form>
     <a href="{% url 'listadoProductos' %}">Ir al Listado</a>

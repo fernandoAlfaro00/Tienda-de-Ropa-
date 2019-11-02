@@ -2,6 +2,7 @@ from django.shortcuts import render ,redirect
 from .forms import ProductoForm
 from .models import Producto
 from django.conf import settings
+from paquetex.switchcase import switch
 import os
 
 
@@ -63,7 +64,7 @@ def editar_productos(request , id):
 
         if form.is_valid():
             
-            os.remove(os.path.join(settings.MEDIA_ROOT ,nombre_imagen))
+           #os.remove(os.path.join(settings.MEDIA_ROOT ,nombre_imagen))
             producto = form.save(commit=False)
             
             producto.save()
@@ -75,12 +76,16 @@ def editar_productos(request , id):
 
 
 def  filtro_precio(request):
+
+   
     productos  = Producto.objects.all()
-    filtro = 'precio_venta'
+    filtro = 0
     
     if request.POST.get('filtro'):
         filtro = request.POST.get('filtro')
 
-        productos  = Producto.objects.all().order_by(filtro)
+        productos  = Producto.objects.all().order_by(switch(filtro))
 
     return render(request, 'app/listadoProducto.html',{'productos':productos ,'filtro':filtro})
+
+

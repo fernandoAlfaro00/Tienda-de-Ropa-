@@ -1,0 +1,44 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %} Registro Usuarios {% endblock %}
+
+{% block content %}
+
+<div class="main">
+
+  <H1>Productos</H1>
+
+  {% for p in productos %}
+
+
+
+  <img src="{{ p.imagen.url }}" alt="" />
+
+  <div> {{ p.color }} </div>
+  <div> {{ p.nombre.label }} {{ p.nombre }}</div>
+  <div>{{ p.precio_venta }}</div>
+
+  <a href="/eliminarProductos/{{p.id}}">borrar</a>
+
+
+  {% endfor %}
+
+  <form method="POST" id="proc">
+    {% csrf_token %}
+    precio :
+
+    <select name="filtro" id="selector">
+      <option value=0>...</option>
+      <option value=1>precio de venta mayor</option>
+      <option value=2>precio venta menor</option>
+      <option value=3>marca</option>
+
+    </select>
+
+  </form>
+
+  <script src="{% static 'js/submit.js' %}"></script>
+
+</div>
+
+{% endblock content %}
