@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'mantenedorUsuarios.apps.MantenedorusuariosConfig',
     'mantenedorProductos.apps.MantenedorproductosConfig',
     'phonenumber_field',
+    'colorful',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -66,6 +69,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+            'mis_filtros': 'mantenedorProductos.templatetags.mis_filtros',
+
+            }
         },
     },
 ]

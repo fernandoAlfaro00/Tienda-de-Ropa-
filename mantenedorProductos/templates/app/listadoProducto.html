@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %} Registro Usuarios {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Listado</title>
-</head>
+{% block content %}
 
-<body>
+{% for p in productos %}
 
-    <H1>Productos</H1>
+<div class="card">
+  <div class="card-body">
+    <p class="card-text">This image is in the middle</p>
+  </div>
+  <img src="{{ p.imagen.url }}" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">of a card.</p>
+  </div>
+</div>
 
+{% endfor %}
 
-    {% for p in productos %}
-
-    {{ p.color }}
-    {{ p.nombre }}
-    {{ p.precio_venta }}
-    <img src="{{ p.imagen.url }}" alt="">
-
-    {% endfor%}
-</body>
-
-</html>
+{% endblock content %}

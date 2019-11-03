@@ -1,12 +1,12 @@
 from django.db import models
+from colorful.fields import RGBColorField
 
-# Create your models here.
 class Producto(models.Model):
-    nombre =  models.CharField(max_length=40)
-    descripcion =  models.TextField(max_length=40)
-    color = models.CharField(max_length=12)
-    precio_comprar = models.IntegerField()
-    precio_venta = models.IntegerField()
+    nombre =  models.CharField(max_length=50 , null=False , blank=False)
+    descripcion =  models.TextField(max_length=40, null=False ,blank=True )
+    color = RGBColorField(colors=['#FF0000', '#00FF00', '#0000FF'])
+    precio_comprar = models.IntegerField(null=False)
+    precio_venta = models.IntegerField(null=False)
     numero_talla = models.CharField(max_length=40)
     codigo =  models.IntegerField()
     tipo_tela = models.CharField(max_length=40)
