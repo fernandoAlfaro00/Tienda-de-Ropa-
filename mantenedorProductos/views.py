@@ -89,3 +89,7 @@ def  filtro_precio(request):
     return render(request, 'app/listadoProducto.html',{'productos':productos ,'filtro':filtro})
 
 
+
+def catalogo_producto(request):
+    
+    return render(request, 'app/catalogo.html' ,{})
