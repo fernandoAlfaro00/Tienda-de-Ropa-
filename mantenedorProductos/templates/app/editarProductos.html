@@ -12,8 +12,8 @@
     <h1>Editar Productos</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_table }}
-        <input type="submit" value="register" />
+        {{ form.as_p }}
+        <input type="submit" value="Registrar" />
 
     </form>
     <a href="{% url 'listadoProductos' %}">Ir al Listado</a>

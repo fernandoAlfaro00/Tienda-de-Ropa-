@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'mantenedorProductos.apps.MantenedorproductosConfig',
     'phonenumber_field',
     'colorful',
+    'crispy_forms',
     
 
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
