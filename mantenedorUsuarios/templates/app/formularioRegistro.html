@@ -1,0 +1,134 @@
+{% extends "app/base.html" %}
+
+{% load staticfiles %}
+
+<title>{% block title%}Registro de Usuario {% endblock%}</title>
+
+{% block css  %}
+
+<link rel="stylesheet" href="{% static 'css/ocultar.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <form action="#!" method="post" id="formulario">
+        <div class="header-form">
+            <h1 class="text-white">Registro de Usuarios</h1>
+            <p class="text-white">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sint qui velit aliquid
+                nesciunt
+                ullam doloremque adipisci a doloribus, ab ducimus molestiae maxime? Dolorem ullam molestias
+                sunt
+                iste voluptate distinctio!
+            </p>
+            <hr>
+        </div>
+        {# formulario multi paso #}
+        {% comment%} falta mejorar la apariencia de el formulario y que cuando se siguiente verifique que los campos
+        tenga los valores correctos ..... tengo que revisar formmulti?.js
+        {% endcomment%}
+
+        <fieldset>
+
+
+            <div class="form-group">
+                <label for="rut" class="text-white">Run</label>
+                <input type="text" class="form-control" name="rut" id="rut" required oninput="checkRut(this)"
+                    placeholder="Ingrese RUT">
+            </div>
+
+            <div class="form-group">
+                <label for="txtnombre" class="text-white">Nombre Completo</label>
+                <div class="input-group">
+                    <div class="container-nombre">
+                        <input type="text" class="form-control" id="txtnombre" name="txtnombre"
+                            placeholder="Ejemplo juan antonio">
+                    </div>
+                    <div class="container-apellido">
+                        <input type="text" class="form-control" id="txtapellido" name="txtapellido"
+                            placeholder="Ejemplo machuca allende">
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="text-white" for="txtemail">Email</label>
+                <input type="email" class="form-control" id="txtemail" name="txtemail"
+                    placeholder="Ejemplo adam.pds@yahoo.com">
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="txttelefono">Telefono</label>
+                <input type="tel" class="form-control" name="txttelefono" id="txttelefono"
+                    placeholder="Ejemplo 9 79428203" maxlength="9">
+            </div>
+
+
+            <div class="d-flex justify-content-end next-form">
+                <input type="button" class="next-form btn  btn-outline-light" value="siguiente" />
+            </div>
+        </fieldset>
+        <!-- ### parte dos del formulario ### -->
+        <fieldset>
+            <div class="container-select">
+                <div class="form-group" id="container-fecha">
+                    <label for="txtfecha_nac" class="text-white">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" name="txtfecha_nac" id="txtfecha_nac" max="31-12-2001">
+                </div>
+                <div class="form-group" id="container-region">
+                    <label for="regiones" class="text-white">Region</label>
+                    <select class="custom-select" id="regiones" name="txtregion">
+
+                    </select>
+                </div>
+                <div class="form-group" id="container-comuna">
+                    <label for="comunas" class="text-white">Comuna</label>
+                    <select class="custom-select" id="comunas" name="txtcomuna">
+
+                    </select>
+                </div>
+                <div class="form-group" id="container-vivienda">
+                    <label for="txtvivienda" class="text-white">Vivienda</label>
+                    <select class="custom-select" id="txtvivienda" name="txtvivienda">
+                        <option selected="">Seleccione Tipo vivienda</option>
+                        <option value="1">Casa con patio Grande</option>
+                        <option value="2">Casa con patio pequeño</option>
+                        <option value="3">Casa sin patio</option>
+                        <option value="4">Departamento</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-start previous-form">
+                <input type="button" name="previous" class="previous-form btn  btn-outline-light" value="Volver" />
+            </div>
+            <div class="d-flex justify-content-center submit">
+                <input type="submit" name="submit" class="submit btn btn-light" value="Registral" />
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+{% block scripts  %}
+<script src="{% static 'js/multiform.js' %}"></script>
+
+<!-- Validate -->
+<script src="{% static 'js/librerias_jquery/jquery.validate.min.js' %}"></script>
+<!-- Validar Rut -->
+<script src="{% static 'js/validar_rut.js' %}"></script>
+
+<!-- validador -->
+<script src="{% static 'js/validador.js' %}"></script>
+<!-- regiones y  comunas -->
+<script src="{% static 'js/regiones-comunas.js' %}"></script>
+
+{% endblock %}
+
+{% endblock content %}

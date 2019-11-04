@@ -10,8 +10,8 @@ def agregar_usuario(request):
             model_instance = form.save(commit=False)
             model_instance.save()
             
-            return redirect('/AgregarProductos')
+            return redirect('/')
 
     else:
         form  = ClienteForm()
-        return render(request , 'app/reg.html' , {'form':form})
+        return render(request , 'app/formularioRegistro.html' , {'form':form})

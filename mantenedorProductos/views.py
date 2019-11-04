@@ -11,6 +11,7 @@ def index(request):
     return render(request , 'app/index.html')
 
 def lista_productos(request):
+    # pylint: disable=no-member
     productos = Producto.objects.all()
     datos  = {'productos':productos}
 
@@ -36,6 +37,7 @@ def agregar_productos(request):
 
 def eliminar_productos(request ,producto_id):
 
+    # pylint: disable=no-member
     producto =  Producto.objects.get(id=producto_id)
 
     try:
@@ -52,7 +54,7 @@ def eliminar_productos(request ,producto_id):
 
 
 def editar_productos(request , id): 
-
+    # pylint: disable=no-member
     producto = Producto.objects.get(id=id)
     nombre_imagen =  str(producto.imagen)
     form =  ProductoForm(instance=producto)
@@ -64,7 +66,7 @@ def editar_productos(request , id):
 
         if form.is_valid():
             
-           #os.remove(os.path.join(settings.MEDIA_ROOT ,nombre_imagen))
+            #os.remove(os.path.join(settings.MEDIA_ROOT ,nombre_imagen))
             producto = form.save(commit=False)
             
             producto.save()
@@ -77,7 +79,7 @@ def editar_productos(request , id):
 
 def  filtro_precio(request):
 
-   
+   # pylint: disable=no-member
     productos  = Producto.objects.all()
     filtro = 0
     
@@ -91,5 +93,9 @@ def  filtro_precio(request):
 
 
 def catalogo_producto(request):
-    
-    return render(request, 'app/catalogo.html' ,{})
+    # pylint: disable=no-member
+    productos = Producto.objects.all()
+    datos  = {'productos':productos}
+
+ 
+    return render(request, 'app/catalogo.html' ,datos)

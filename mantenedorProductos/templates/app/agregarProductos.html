@@ -18,14 +18,26 @@
         <h1>Agregar Poleras</h1>
         <form method="POST" action="#" enctype="multipart/form-data">
             {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">{{form.nombre|as_crispy_field}}</div>
+                <div class="form-group col-md-6 mb-0">{{form.codigo|as_crispy_field}}</div>
+                <div class="form-group col-md-6 mb-0">{{form.precio_comprar|as_crispy_field}}</div>
+                <div class="form-group col-md-6 mb-0">{{form.precio_venta|as_crispy_field}}</div>
+                <div class="form-group col-md-3 mb-0">{{form.descuento|as_crispy_field}}</div>
+                <div class="form-group col-md-3 mb-0">{{form.numero_talla|as_crispy_field}}</div>
+                <div class="form-group col-md-3 mb-0">{{form.tipo_tela|as_crispy_field}}</div>
+                <div class="form-group col-md-3 mb-0">{{form.color|as_crispy_field}}</div>
 
-            <div class="row">
-                {{ form }}
+                <div class="form-group col-md-6 mb-0">{{form.descripcion|as_crispy_field}}</div>
+                <div class="form-group col-md-6 mb-0">{{form.imagen|as_crispy_field}}</div>
+
+
             </div>
 
-            <input type="submit" value="Registral" />
+            <button type="submit" class="btn btn-primary  mt-5">Registal Productos</button>
         </form>
-        <a href="{% url 'listadoProductos' %}">Ir al Listado</a>
+
+        <div class="d-flex justify-content-end"> <a href="{% url 'listadoProductos' %}">Ir al Listado</a> </div>
     </div>
 
 
