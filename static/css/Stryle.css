@@ -1,6 +1,5 @@
 body {
   background-color: black;
-  color: white;
 }
 
 .container {
@@ -11,11 +10,11 @@ body {
   background-color: #f2f2f2;
 }
 /* #reef {
-  color: black;
-}
-#reefp {
-  color: black;
-} */
+    color: black;
+  }
+  #reefp {
+    color: black;
+  } */
 
 #footer {
   justify-content: space-between;
