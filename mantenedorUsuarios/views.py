@@ -3,7 +3,7 @@ from .forms  import ClienteForm
 def agregar_usuario(request):
 
     if request.method == "POST":
-        form = ClienteForm(request.POST , files=request.FILES)
+        form = ClienteForm(request.POST)
 
         if  form.is_valid():
            
