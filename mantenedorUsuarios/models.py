@@ -15,7 +15,7 @@ VIVENDA_CHOICES =[(1,'Casa con patio Grande'),
     (3,'Casa sin Patio'),
     (4,'Departamento')]
  
-""" 
+
 class   Cliente(models.Model):
     #usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     primer_nombre =  models.CharField(max_length=40)
@@ -30,8 +30,9 @@ class   Cliente(models.Model):
     region = models.IntegerField(choices=REGION_CHOICES  ,null=True)
     comuna = models.CharField(choices=COMUNA_CHOICES ,max_length=50 , null=True)
     vivienda = models.IntegerField(choices=VIVENDA_CHOICES , null=True)
- """
 
+'''
 class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     es_astronauta = models.BooleanField(default=False)
+'''    
