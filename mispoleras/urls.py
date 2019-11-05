@@ -18,11 +18,21 @@ from django.urls import path ,include
 from django.conf import settings 
 from django.conf.urls.static import static
 
-urlpatterns = [
+""" 
+
     path('admin/', admin.site.urls),
     path('', include('mantenedorProductos.urls')),
-    path('', include('mantenedorUsuarios.urls')),
+    ###ojo aqui /ficha no es necesario cuando pones path('/ficha', include('mantenedorUsuarios.urls')),
+    cuando hace path('', include('mantenedorProductos.urls'))  lo que esta haciendo es importar todas
+    las urls definidas en  el mantenedor de usuario
 
+    
+     """
+urlpatterns = [
+    
+    path('admin/', admin.site.urls),
+    path('', include('mantenedorProductos.urls')),
+    
     
     
 
