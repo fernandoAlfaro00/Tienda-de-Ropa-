@@ -32,6 +32,5 @@ class   Cliente(models.Model):
     vivienda = models.IntegerField(choices=VIVENDA_CHOICES , null=True)
  """
 
-class Perfil(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+class Perfil(User):
     es_astronauta = models.BooleanField(default=False)

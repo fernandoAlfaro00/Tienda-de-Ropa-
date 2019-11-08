@@ -1,6 +1,6 @@
 from django import forms 
 from .models import Producto
-from colorful.forms import  ColorFieldWidget
+from colorfield.fields import ColorWidget ,ColorField
 
 class ProductoForm(forms.ModelForm):
 
@@ -39,9 +39,7 @@ class ProductoForm(forms.ModelForm):
                 
             } 
             ),
-            'color': forms.Select(attrs={
-                
-            } ),
+            'color':  forms.Select(),
 
             'numero_talla':  forms.TextInput(
                 attrs={

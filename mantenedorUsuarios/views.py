@@ -1,5 +1,6 @@
 from django.shortcuts import render ,redirect
 from .forms  import ClienteForm
+from .models import Perfil
 def agregar_usuario(request):
 
     if request.method == "POST":
@@ -14,4 +15,10 @@ def agregar_usuario(request):
 
     else:
         form  = ClienteForm()
-        return render(request , 'app/formularioRegistro.html' , {'form':form})
+        return render(request , 'app/regpruebas.html' , {'form':form})
+
+
+def  listar_usuario(request):
+    form =  Perfil.objects.all()
+    datos = {'form':form } 
+    return  render(request ,  'app/listadoClientes.html' , datos  )

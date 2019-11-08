@@ -40,12 +40,14 @@ def eliminar_productos(request ,producto_id):
     # pylint: disable=no-member
     producto =  Producto.objects.get(id=producto_id)
 
-    try:
-        os.remove(os.path.join(settings.MEDIA_ROOT ,str(producto.imagen)))
+    
+        #os.remove(os.path.join(settings.MEDIA_ROOT ,str(producto.imagen)))
         
-    finally:
-         producto.delete() 
-   
+    
+    producto.estado =  not producto.estado 
+
+    producto.save()
+
 
    
 
@@ -94,7 +96,7 @@ def  filtro_precio(request):
 
 def catalogo_producto(request):
     # pylint: disable=no-member
-    productos = Producto.objects.all()
+    productos = Producto.objects.filter(estado= True)
     datos  = {'productos':productos}
 
  

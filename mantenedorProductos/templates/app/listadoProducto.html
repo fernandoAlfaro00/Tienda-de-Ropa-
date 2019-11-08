@@ -51,7 +51,14 @@
                 <td>{{ p.imagen }}</td>
                 <td>{{ p.descripcion }}</td>
                 <td><a href="editarProductos/{{ p.id }}">Modificar</a></td>
-                <td><a href="eliminarProductos/{{ p.id }}">Eliminar</a></td>
+                <td><a href="eliminarProductos/{{ p.id }}">
+                        {% if p.estado %}
+
+                        Habilitado
+                        {% else %}
+                        Desabilitado
+                        {% endif %}
+                    </a></td>
             </tr>
 
             {% endfor%}
