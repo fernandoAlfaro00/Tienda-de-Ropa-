@@ -22,3 +22,4 @@ def  listar_usuario(request):
     form =  Perfil.objects.all()
     datos = {'form':form } 
     return  render(request ,  'app/listadoClientes.html' , datos  )
+

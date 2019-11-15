@@ -1,0 +1,74 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %} Mis poleras - Catalogo {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/estilodos.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container bg-white" style="min-height: 600px;">
+    <div class="row pt-5 pb-5">
+        <div class="col-xl-2  col-lg-2 col-3 ">
+
+            <div class="cinta">
+                <div class="row">
+                    <div class="offset-md-4">
+                        <div style=" background-color: aqua; width: 100px; height: 100px;">
+                            <img src="{{ p.imagen.url }}" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4  col-lg-4 col-6">
+            <div class="fotograma">
+                <div style="color: aqua; width: 300px; height: 300px; background-color: aqua;">d</div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-12">
+            <div class="infor-producto">
+                <h1> {{ p.nombre }}</h1>
+                <div class="row">
+                    <div class="col-6">${{ p.precio_venta }}</div>
+                    <div class="col-6">
+                        {% if p.cantidad > 0 %}
+                        En Stock
+                        {% else %}
+                        No Disponible
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+                <div class="talla">
+                    <div class="tall">{{ p.numero_talla }}</div>
+                    <div class="opcion_talla"><select name="" id=""></select></div>
+                </div>
+                <br>
+                <div class="compra">
+
+
+                    <div class="form-inline">
+                        <div class="col-6"><button type="submit" class="btn btn-success">Comprar</button></div>
+                        <div class="col-6"><input type="number" class="form-control" placeholder="Example input"></div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    {{ p.descripcion }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block scripts  %}
+
+<script src="{% static 'js/jscolor.js' %}"></script>
+{% endblock %}

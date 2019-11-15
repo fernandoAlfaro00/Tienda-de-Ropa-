@@ -93,12 +93,18 @@
   </div>
   <!--###############3 Catalogo de Productos############### -->
   <div class="container-catalogo">
+    {% if productos %}
     <div class="row">
       {% for p in productos %}
       <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-3 mt-3 ">
         <div class=" card">
           <div class="card-body">
-            <img class="card-img" src="{% static  'img/images.jfif' %}" alt="Card image">
+            {% if  p.imagen %}
+            <img class="card-img" src="{{ p.imagen.url }}" alt="Card image">
+            {% else %}
+            <img class="card-img" src="{ static 'img/noDisponible.jfif' }" alt="Card image">
+
+            {% endif %}
             <p class="card-img-overlay text-primary ">{{ p.descuento }}</p>
           </div>
           <div class="card-body">
@@ -110,8 +116,9 @@
               style="width:20px; height:20px; border-radius: 50%; border: none;"></button>
 
             <div class="row">
-              <div class="col-6"><a href="/" class="card-link">Comprar</a></div>
-              <div class="col-6"><a href="/" class="card-link"><img src="{% static 'img/comou.png' %}" alt="" srcset="">
+              <div class="col-6"><a href="detalle/{{ p.id }}" class="card-link">Detalle</a></div>
+              <div class="col-6"><a href="favoritos" class="card-link"><img src="{% static 'img/comou.png' %}" alt=""
+                    srcset="">
                 </a></div>
 
             </div>
@@ -125,6 +132,10 @@
 
 
     </div>
+    {% else %}
+    <h4>Sin Resultados</h4>
+    {% include "app/opcion.html" %}
+    {% endif %}
   </div>
 </div>
 

@@ -1,6 +1,8 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 
@@ -14,23 +16,14 @@ VIVENDA_CHOICES =[(1,'Casa con patio Grande'),
     (2,'Casa con patio Pequeño'),
     (3,'Casa sin Patio'),
     (4,'Departamento')]
- 
-""" 
-class   Cliente(models.Model):
-    #usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    primer_nombre =  models.CharField(max_length=40)
-    segundo_nombre = models.CharField(max_length=40)
-    apellido_materno = models.CharField(max_length=40)
-    apellido_paterno = models.CharField(max_length=40)
-    run = models.CharField(max_length=15 )
-    email = models.EmailField(max_length=50)
+
+class Perfil(models.Model):
+    usuario = models.OneToOneField( User, on_delete=models.CASCADE)
+    run = models.CharField(max_length=15)
     telefono = PhoneNumberField()
-    
     fecha_nacimiento = models.DateField()
     region = models.IntegerField(choices=REGION_CHOICES  ,null=True)
     comuna = models.CharField(choices=COMUNA_CHOICES ,max_length=50 , null=True)
     vivienda = models.IntegerField(choices=VIVENDA_CHOICES , null=True)
- """
 
-class Perfil(User):
-    es_astronauta = models.BooleanField(default=False)
+
