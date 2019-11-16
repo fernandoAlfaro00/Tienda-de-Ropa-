@@ -1,9 +1,12 @@
 from django.shortcuts import render ,redirect
 from .forms  import ClienteForm
+
+
+
 def agregar_usuario(request):
 
     if request.method == "POST":
-        form = ClienteForm(request.POST)
+        form = ClienteForm(request.POST , files=request.FILES)
 
         if  form.is_valid():
            

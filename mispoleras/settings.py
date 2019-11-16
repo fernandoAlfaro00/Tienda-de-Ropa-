@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mantenedorUsuarios.apps.MantenedorusuariosConfig',
     'mantenedorProductos.apps.MantenedorproductosConfig',
     'phonenumber_field',
     'colorful',
+    'mantenedorUsuarios',
     
 
 ]

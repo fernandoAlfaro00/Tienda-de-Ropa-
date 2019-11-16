@@ -16,7 +16,7 @@ VIVENDA_CHOICES =[(1,'Casa con patio Grande'),
     (4,'Departamento')]
  
 
-class   Cliente(models.Model):
+class Cliente(models.Model):
     #usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     primer_nombre =  models.CharField(max_length=40)
     segundo_nombre = models.CharField(max_length=40)
