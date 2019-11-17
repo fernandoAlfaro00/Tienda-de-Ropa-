@@ -1,10 +1,12 @@
-from django.urls import path
-from .views import agregar_usuario , listar_usuario
+from django.urls import path , include
+from . import views
 
 urlpatterns = [
-    path('agregarUsuario', agregar_usuario ,name="registrousuarios" ),
-    path('listadoUsuario', listar_usuario ,name="listadousuario" ),
-
+    path('', views.home, name='home'),
+    path('signup/', views.signup, name='signup'),
+    path('secret/', views.secret_page, name='secret'),
+    path('secret2/', views.SecretPage.as_view(), name='secret2'),
+    path('accounts/', include('django.contrib.auth.urls')),
  
 
 ]

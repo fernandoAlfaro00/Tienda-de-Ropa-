@@ -1,9 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
 
 
 
@@ -21,9 +18,9 @@ class Perfil(models.Model):
     usuario = models.OneToOneField( User, on_delete=models.CASCADE)
     run = models.CharField(max_length=15)
     telefono = PhoneNumberField()
-    fecha_nacimiento = models.DateField()
-    region = models.IntegerField(choices=REGION_CHOICES  ,null=True)
-    comuna = models.CharField(choices=COMUNA_CHOICES ,max_length=50 , null=True)
+    fecha_nacimiento = models.DateField(null=True)
+    region = models.IntegerField(choices=REGION_CHOICES ,null=True)
+    comuna = models.CharField(choices=COMUNA_CHOICES, max_length=60 , null=True )
     vivienda = models.IntegerField(choices=VIVENDA_CHOICES , null=True)
 
 

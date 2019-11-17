@@ -9,10 +9,13 @@
 </head>
 
 <body>
-    <form action="#">
+    <form action="#" method="POST">
         {% csrf_token %}
 
-        {{ form }}
+        {{ usuario.as_p }}
+
+        {{ perfil.as_p }}
+
 
         <input type="submit" value="Registrar">
     </form>
