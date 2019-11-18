@@ -1,10 +1,12 @@
+{% load staticfiles %}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <title>{% block title %}My Site{% endblock %}</title>
+  <title>{% block title %}REGISTRO{% endblock %}</title>
+  
   <style type="text/css">
     .asteriskField {
       display: none;
@@ -21,16 +23,48 @@
   </style>
 </head>
 <body>
+    <div class="col-12" id="container-logo">
+        <img src="{% static 'img//logohead.png' %}" class="img-fluid" alt="">
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark img-fluid" id="nav-menu">
+        <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'catalogoProducto' %}">Catalogo <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'signup' %}">Registrarse</a>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="GET">
+                <input class="form-control mr-sm-2" type="text" placeholder="Busca algo"
+                    aria-label="Search" name="buscar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+            <div class="nav-item ml-3">
+                <a class="nav-link text-success my-2 my-sm-0" href="#!">Iniciar Seccion</a>
+            </div>
+        </div>
+    </nav>  
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">My Site</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Mis Poleras</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
           </li>
           {% if user.is_authenticated %}
             <li class="nav-item">
