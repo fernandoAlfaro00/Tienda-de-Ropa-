@@ -61,3 +61,12 @@ def secret_page(request):
 
 class SecretPage(LoginRequiredMixin, TemplateView):
     template_name = 'secret_page.html'
+
+
+def salir(request):
+    logout(request)
+    return redirect('home')
+
+def entrar(request):
+    login(request)
+    return redirect('home')
