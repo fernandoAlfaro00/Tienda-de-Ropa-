@@ -3,19 +3,22 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
 <div class="row justify-content-center">
   <div class="col-8">
     <div class="card">
       <div class="card-body">
         <h2>Regístrate</h2>
-        <form method="post">
+        <form method="POST" id="personForm" data-comunas-url="{% url 'ajax_cargar_comunas' %}" novalidate>
           {% csrf_token %}
           {{ usuario_form|crispy }}
           {{ perfil_form|crispy }}
           <button type="submit" class="btn btn-primary">Regístrate</button>
         </form>
+
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
