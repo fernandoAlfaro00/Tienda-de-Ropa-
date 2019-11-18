@@ -1,18 +1,33 @@
 from django import forms
-<<<<<<< HEAD
-from .models import Perfil 
+from .models import Perfil , Comuna
 from django.contrib.auth.models import User
-=======
 
-from .models import Cliente
->>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e
 
 class PerfilForm(forms.ModelForm):
 
     class Meta:
-<<<<<<< HEAD
+
         model=Perfil
         fields = ['run' , 'telefono' ,'region' , 'fecha_nacimiento','comuna','vivienda',]
+        widgets = {
+            'comuna' : forms.Select(attrs={'id':'id_comuna' , }),
+            'region' : forms.Select(attrs={'id':'id_region' , }),
+            'fecha_nacimiento': forms.DateInput(),
+
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # pylint: disable=no-member
+        self.fields['comuna'].queryset = Comuna.objects.none()
+
+        if 'region' in self.data:
+                try:
+                    region_id = int(self.data.get('region'))
+                    self.fields['comuna'].queryset = Comuna.objects.filter(region_id=region_id).order_by('nombre')
+                except (ValueError, TypeError):
+                    pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+                self.fields['comuna'].queryset = self.instance.region.comuna_set.order_by('nombre')
         
 
 
@@ -27,11 +42,5 @@ class UsuarioForm(forms.ModelForm ):
         widgets = {
             'password': forms.PasswordInput(),
 
+
         }   
-=======
-        model = Cliente 
-        fields = ('id','primer_nombre','segundo_nombre',
-        'apellido_materno','apellido_paterno','run','email','telefono',
-        'fecha_nacimiento','region','comuna','vivienda',)
-   
->>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e

@@ -1,4 +1,5 @@
 from django.shortcuts import render ,redirect
+from django.http import HttpResponseRedirect
 from .forms import ProductoForm
 from django.conf import settings
 from .models  import Producto
@@ -6,9 +7,36 @@ from django.db.models  import Q
 from .case import switch
 import os
 
+def buscador(request):
+
+    queryset = request.GET.get("buscar")
+    # pylint: disable=no-member
+    productos = Producto.objects.filter(estado= True )
+    print("ss")
+    if queryset:
+        print("hola")
+        productos = Producto.objects.filter( 
+            Q(nombre__icontains = queryset)|
+            Q(descripcion__icontains =queryset)
+        ).distinct()
+        print("chao")
+        HttpResponseRedirect('catalogo')
+    
 
 def index(request):
-
+    
+    queryset = request.GET.get("buscar")
+    # pylint: disable=no-member
+    productos = Producto.objects.filter(estado= True )
+    
+    if queryset:
+        
+        productos = Producto.objects.filter( 
+            Q(nombre__icontains = queryset)|
+            Q(descripcion__icontains =queryset)
+        ).distinct()
+        
+        return HttpResponseRedirect('catalogo')
     return render(request , 'app/index.html')
 
 
@@ -104,16 +132,20 @@ def editar_productos(request , id):
 
 
 def catalogo_producto(request):
-    
+    print("entrada")
     queryset = request.GET.get("buscar")
-   
+    
     # pylint: disable=no-member
     productos = Producto.objects.filter(estado= True )
+    print("ss")
     if queryset:
+        print("hola")
         productos = Producto.objects.filter( 
             Q(nombre__icontains = queryset)|
             Q(descripcion__icontains =queryset)
         ).distinct()
+        print("chao")
+        return HttpResponseRedirect('catalogo')
     filtro = 0
     
     if request.POST.get('filtro'):
@@ -131,3 +163,5 @@ def detalle_productos(request, id_producto):
     producto = Producto.objects.get(id=id_producto)
 
     return render(request , 'app/detalle.html' , {'p':producto} )
+
+

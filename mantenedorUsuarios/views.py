@@ -1,20 +1,15 @@
 
 from django.shortcuts import render ,redirect
-<<<<<<< HEAD
+
 from .forms  import PerfilForm , UsuarioForm
 from django.contrib.auth import  login , logout ,authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-=======
+from .models import Comuna
 from .forms  import ClienteForm
 
-
-
-def agregar_usuario(request):
->>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e
 
 
 def signup(request):
@@ -31,7 +26,7 @@ def signup(request):
             
             usuario.save()
            
-            print("entrando a perfil")
+           
 
             perfil = perfil_form.save(commit=False)
             
@@ -41,11 +36,11 @@ def signup(request):
             
             return redirect('home')
     else:
-        usuario_form =  UsuarioForm(request.POST)
-        perfil_form =  PerfilForm(request.POST)
-        return render(request, 'registration/signup.html', {
-        'usuario_form': usuario_form, 'perfil_form':perfil_form
-        })
+        
+        usuario_form =  UsuarioForm()
+        perfil_form =  PerfilForm()
+        datos = {'usuario_form': usuario_form, 'perfil_form':perfil_form}
+        return render(request, 'registration/signup.html',datos)
 
 
 
@@ -68,6 +63,8 @@ class SecretPage(LoginRequiredMixin, TemplateView):
     template_name = 'secret_page.html'
 
 
+
+
 def salir(request):
     logout(request)
     return redirect('home')
@@ -75,3 +72,10 @@ def salir(request):
 def entrar(request):
     login(request)
     return redirect('home')
+
+def cargar_Comunas(request):
+    region = request.GET.get('region')
+    comunas = Comuna.objects.filter(region_id=region).order_by('nombre')
+    
+    return render(request, 'app/lista_desplegable_comuna.html', {'comunas': comunas})   
+

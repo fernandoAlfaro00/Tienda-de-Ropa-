@@ -8,6 +8,7 @@ urlpatterns = [
     path('estadoProductos/<int:producto_id>', views.cambiar_estado , name='estadoProductos' ),
     path('catalogo', views.catalogo_producto , name='catalogoProducto' ),
     path('detalle/<int:id_producto>',  views.detalle_productos, name='detalle'),
+   
 
 
     
