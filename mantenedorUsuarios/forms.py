@@ -21,7 +21,7 @@ class PerfilForm(forms.ModelForm):
         if 'region' in self.data:
                 try:
                     region_id = int(self.data.get('region'))
-                    self.fields['comuna'].queryset = Comuna.objects.filter(id=region_id).order_by('nombre')
+                    self.fields['comuna'].queryset = Comuna.objects.filter(region_id=region_id).order_by('nombre')
                 except (ValueError, TypeError):
                     pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:

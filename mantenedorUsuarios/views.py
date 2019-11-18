@@ -62,9 +62,9 @@ class SecretPage(LoginRequiredMixin, TemplateView):
 
 
 def cargar_Comunas(request):
-    region = request.POST.get('region')
-    comunas = Comuna.objects.filter(region=region).order_by('nombre')
-    print("holasaaaaa")
+    region = request.GET.get('region')
+    comunas = Comuna.objects.filter(region_id=region).order_by('nombre')
+    
     return render(request, 'app/lista_desplegable_comuna.html', {'comunas': comunas})   
 
 
