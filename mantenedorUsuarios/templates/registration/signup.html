@@ -11,8 +11,8 @@
         <h2>Regístrate</h2>
         <form method="POST" id="personForm" data-comunas-url="{% url 'ajax_cargar_comunas' %}" novalidate>
           {% csrf_token %}
-          {{ usuario_form|crispy }}
-          {{ perfil_form|crispy }}
+          {{ usuario_form|crispy}}
+          {{ perfil_form|crispy}}
           <button type="submit" class="btn btn-primary">Regístrate</button>
         </form>
 

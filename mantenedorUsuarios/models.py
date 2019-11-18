@@ -1,6 +1,8 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
+from django.core.exceptions  import ValidationError
+import datetime
 
 class Region(models.Model):
     nombre = models.CharField(max_length=30)
@@ -22,9 +24,9 @@ VIVENDA_CHOICES =[(1,'Casa con patio Grande'),
 
 class Perfil(models.Model):
     usuario = models.OneToOneField( User, on_delete=models.CASCADE)
-    run = models.CharField(max_length=15)
-    telefono = PhoneNumberField()
-    fecha_nacimiento = models.DateField(null=True)
+    run = models.CharField(max_length=15 , null=False , blank=False)
+    telefono = PhoneNumberField(null=True)
+    fecha_nacimiento = models.DateField(null=False , blank=False )
     region = models.ForeignKey(Region , on_delete=models.SET_NULL , null=True)
     comuna = models.ForeignKey(Comuna , on_delete=models.SET_NULL , null=True)
     vivienda = models.IntegerField(choices=VIVENDA_CHOICES , null=True)

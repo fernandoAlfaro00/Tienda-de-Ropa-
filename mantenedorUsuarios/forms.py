@@ -1,20 +1,45 @@
 from django import forms
 from .models import Perfil , Comuna
 from django.contrib.auth.models import User
+from datetime  import datetime as dt 
+
 
 
 class PerfilForm(forms.ModelForm):
 
     class Meta:
-
+      
         model=Perfil
         fields = ['run' , 'telefono' ,'region' , 'fecha_nacimiento','comuna','vivienda',]
         widgets = {
-            'comuna' : forms.Select(attrs={'id':'id_comuna' , }),
-            'region' : forms.Select(attrs={'id':'id_region' , }),
-            'fecha_nacimiento': forms.DateInput(),
-
+            'fecha_nacimiento' : forms.SelectDateWidget(years=range(1945 ,dt.today().year)) 
         }
+        error_messages = {
+            'run' :{
+                'max_length': 'Maximo de 15 caracteres',
+                'required':'Obligatorio'
+            },
+            'region' :{
+                
+                'required':'Por favor Seleccione una region ',
+
+            },
+            'comuna': {
+                'required':'Por favor Seleccione una Comuna ',
+                
+            },
+            'vivienda': {
+                'required':'Por favor Seleccione una vivienda ',
+                
+            }
+            ,
+            'fecha_nacimiento': {
+                'required':'Por favor Seleccione una fecha_nacimiento ',
+                
+            }
+        }
+
+       
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # pylint: disable=no-member
@@ -37,10 +62,26 @@ class UsuarioForm(forms.ModelForm ):
         model= User
         fields= ['username','password', 'email','first_name','last_name']
         labels =  {
-            'username':'Usuario', 'password':'Contraseña', 'email':'Correo'
+            'username':'Usuario', 'password':'Contraseña', 'email':'Correo' , 'first_name' :  'Nombres' ,  'last_name' : 'apellidos' 
         }
         widgets = {
             'password': forms.PasswordInput(),
-
-
+            'first_name': forms.TextInput(attrs={'name':'first_name'}),
+            'last_name': forms.TextInput(attrs={'name':'last_name'}),
+            'email': forms.EmailInput(attrs={'name':'email'}),
+            'username': forms.TextInput(attrs={'name':'username'}),
         }   
+
+        error_messages = {
+
+            'password' :  {
+                'required' :  'La Contraseña es Obligatoria ',
+            },
+            'first_name' : {
+                'required': 'Ingrese el  nombre'
+            },
+            'last_name':{
+                'required': 'Ingrese su apellido'
+            }
+
+        }

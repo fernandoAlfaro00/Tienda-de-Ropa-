@@ -18,7 +18,7 @@ def signup(request):
         usuario_form =  UsuarioForm(request.POST)
         perfil_form =  PerfilForm(request.POST)
         
-        if usuario_form.is_valid() and perfil_form.is_valid():
+        if usuario_form.is_valid() :
            
             usuario =  usuario_form.save()
 
