@@ -1,11 +1,8 @@
-from django.http  import HttpResponse
+
 from django.shortcuts import render ,redirect
 from .forms  import PerfilForm , UsuarioForm
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import  login , logout ,authenticate
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -38,9 +35,9 @@ def signup(request):
     else:
         usuario_form =  UsuarioForm(request.POST)
         perfil_form =  PerfilForm(request.POST)
-    return render(request, 'registration/signup.html', {
+        return render(request, 'registration/signup.html', {
         'usuario_form': usuario_form, 'perfil_form':perfil_form
-    })
+        })
 
 
 

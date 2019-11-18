@@ -1,9 +1,9 @@
 from django.shortcuts import render ,redirect
 from .forms import ProductoForm
 from django.conf import settings
-from paquetex.switchcase import switch
 from .models  import Producto
 from django.db.models  import Q
+from .case import switch
 import os
 
 
@@ -99,21 +99,12 @@ def editar_productos(request , id):
 
 
 
-def  filtro_precio(request):
-   # pylint: disable=no-member
-    productos  = Producto.objects.all()
-    filtro = 0
-    
-    if request.POST.get('filtro'):
-        filtro = request.POST.get('filtro')
 
-        productos  = Producto.objects.all().order_by(switch(filtro))
-
-    return render(request, 'app/listadoProducto.html',{'productos':productos ,'filtro':filtro})
-
+ 
 
 
 def catalogo_producto(request):
+    
     queryset = request.GET.get("buscar")
    
     # pylint: disable=no-member
@@ -123,12 +114,14 @@ def catalogo_producto(request):
             Q(nombre__icontains = queryset)|
             Q(descripcion__icontains =queryset)
         ).distinct()
-
-        
+    filtro = 0
     
+    if request.POST.get('filtro'):
+        filtro = request.POST.get('filtro')
 
+        productos  = Producto.objects.all().order_by(switch(filtro))
  
-    return render(request, 'app/catalogo.html' ,{'productos':productos})
+    return render(request, 'app/catalogo.html' ,{'productos':productos ,'filtro':filtro})
 
 
 
@@ -136,8 +129,5 @@ def detalle_productos(request, id_producto):
 
     # pylint: disable=no-member
     producto = Producto.objects.get(id=id_producto)
-
-    
-   
 
     return render(request , 'app/detalle.html' , {'p':producto} )
