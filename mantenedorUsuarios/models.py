@@ -22,37 +22,15 @@ VIVENDA_CHOICES =[(1,'Casa con patio Grande'),
     (2,'Casa con patio Pequeño'),
     (3,'Casa sin Patio'),
     (4,'Departamento')]
-<<<<<<< HEAD
+
 
 class Perfil(models.Model):
     usuario = models.OneToOneField( User, on_delete=models.CASCADE)
     run = models.CharField(max_length=15)
-=======
- 
 
-class Cliente(models.Model):
-    #usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    primer_nombre =  models.CharField(max_length=40)
-    segundo_nombre = models.CharField(max_length=40)
-    apellido_materno = models.CharField(max_length=40)
-    apellido_paterno = models.CharField(max_length=40)
-    run = models.CharField(max_length=15 )
-    email = models.EmailField(max_length=50)
->>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e
     telefono = PhoneNumberField()
     fecha_nacimiento = models.DateField(null=True)
     region = models.ForeignKey(Region , on_delete=models.SET_NULL , null=True)
     comuna = models.ForeignKey(Comuna , on_delete=models.SET_NULL , null=True)
     vivienda = models.IntegerField(choices=VIVENDA_CHOICES , null=True)
 
-<<<<<<< HEAD
-
-
-
-=======
-'''
-class Perfil(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    es_astronauta = models.BooleanField(default=False)
-'''    
->>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e

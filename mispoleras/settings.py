@@ -41,13 +41,11 @@ INSTALLED_APPS = [
     'mantenedorProductos.apps.MantenedorproductosConfig',
     'phonenumber_field',
     'colorful',
-<<<<<<< HEAD
     'crispy_forms',
     'colorfield',
-=======
     'mantenedorUsuarios',
     
->>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e
+
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
