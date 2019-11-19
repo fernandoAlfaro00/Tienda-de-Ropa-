@@ -66,10 +66,10 @@ class UsuarioForm(forms.ModelForm ):
         }
         widgets = {
             'password': forms.PasswordInput(),
-            'first_name': forms.TextInput(attrs={'name':'first_name'}),
-            'last_name': forms.TextInput(attrs={'name':'last_name'}),
-            'email': forms.EmailInput(attrs={'name':'email'}),
-            'username': forms.TextInput(attrs={'name':'username'}),
+            'first_name': forms.TextInput(attrs={'name':'first_name' , 'max_length':'60' , 'min_length':'1'}),
+            'last_name': forms.TextInput(attrs={'name':'last_name' , 'max_length':'60' , 'min_length':'1' }),
+            'email': forms.EmailInput(attrs={'name':'email' , 'max_length':'60' , 'min_length':'1'}),
+            'username': forms.TextInput(attrs={'name':'username' , 'max_length':'60' , 'min_length':'1'}),
         }   
 
         error_messages = {
@@ -85,3 +85,5 @@ class UsuarioForm(forms.ModelForm ):
             }
 
         }
+
+    

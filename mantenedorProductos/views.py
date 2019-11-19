@@ -7,20 +7,7 @@ from django.db.models  import Q
 from .case import switch
 import os
 
-def buscador(request):
 
-    queryset = request.GET.get("buscar")
-    # pylint: disable=no-member
-    productos = Producto.objects.filter(estado= True )
-    print("ss")
-    if queryset:
-        print("hola")
-        productos = Producto.objects.filter( 
-            Q(nombre__icontains = queryset)|
-            Q(descripcion__icontains =queryset)
-        ).distinct()
-        print("chao")
-        HttpResponseRedirect('catalogo')
     
 
 def index(request):

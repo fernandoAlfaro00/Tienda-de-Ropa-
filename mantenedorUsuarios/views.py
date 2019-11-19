@@ -13,6 +13,10 @@ from .models import Comuna
 
 
 def signup(request):
+
+    
+
+
     if request.method == 'POST':
         #form = UserCreationForm(request.POST)
         usuario_form =  UsuarioForm(request.POST)
