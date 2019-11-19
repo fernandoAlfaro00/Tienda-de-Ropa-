@@ -1,21 +1,72 @@
-{% extends "app/base.html" %}
 {% load static %}
-{% block title %} Registro Usuarios {% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
 
-{% for p in productos %}
+</head>
 
-<div class="card">
-  <div class="card-body">
-    <p class="card-text">This image is in the middle</p>
-  </div>
-  <img src="{{ p.imagen.url }}" alt="Card image">
-  <div class="card-body">
-    <p class="card-text">of a card.</p>
-  </div>
-</div>
+<body>
+    <div class="d-flex justify-content-center">
+        <h1>Registro de Producto</h1>
+    </div>
+    <table
+        class="table  table-sm-responsive table-md-responsive table-lg-responsive table-sm-responsive table-xl-responsive">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Producto</th>
+                <th>codigo</th>
+                <th>precio_comprar</th>
+                <th>precio_venta</th>
+                <th>color</th>
+                <th>numero_talla</th>
+                <th>tipo_tela</th>
+                <th>descuento</th>
+                <th>imagen</th>
+                <th>descripcion</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
 
-{% endfor %}
+            </tr>
+        </thead>
+        <tbody>
 
-{% endblock content %}
+            {% for p in productos %}
+            <tr>
+                <th scope="row">{{  p.id  }}</th>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.codigo }}</td>
+                <td>{{ p.precio_comprar }}</td>
+                <td>{{ p.precio_venta }}</td>
+                <td>{{ p.color }}</td>
+                <td>{{ p.numero }}</td>
+                <td>{{ p.tipo_tela }}</td>
+                <td>{{ p.descuento }}</td>
+                <td>{{ p.imagen }}</td>
+                <td>{{ p.descripcion }}</td>
+                <td><a href="editarProductos/{{ p.id }}">Modificar</a></td>
+                <td><a href="estadoProductos/{{ p.id }}">
+                        {% if p.estado %}
+
+                        Habilitado
+                        {% else %}
+                        Desabilitado
+                        {% endif %}
+                    </a></td>
+            </tr>
+
+            {% endfor%}
+
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>

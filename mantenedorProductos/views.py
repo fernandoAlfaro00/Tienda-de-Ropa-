@@ -1,17 +1,36 @@
 from django.shortcuts import render ,redirect
+from django.http import HttpResponseRedirect
 from .forms import ProductoForm
-from .models import Producto
 from django.conf import settings
-from paquetex.switchcase import switch
+from .models  import Producto
+from django.db.models  import Q
+from .case import switch
 import os
 
 
-def index(request):
+    
 
+def index(request):
+    
+    queryset = request.GET.get("buscar")
+    # pylint: disable=no-member
+    productos = Producto.objects.filter(estado= True )
+    
+    if queryset:
+        
+        productos = Producto.objects.filter( 
+            Q(nombre__icontains = queryset)|
+            Q(descripcion__icontains =queryset)
+        ).distinct()
+        
+        return HttpResponseRedirect('catalogo')
     return render(request , 'app/index.html')
 
+
 def lista_productos(request):
+    # pylint: disable=no-member
     productos = Producto.objects.all()
+
     datos  = {'productos':productos}
 
     return render(request ,'app/listadoProducto.html',datos)
@@ -20,6 +39,7 @@ def lista_productos(request):
 def agregar_productos(request):
 
     if request.method == "POST":
+
         form = ProductoForm(request.POST , files=request.FILES)
 
         if  form.is_valid():
@@ -30,20 +50,39 @@ def agregar_productos(request):
             return redirect('/AgregarProductos')
 
     else:
+
         form  = ProductoForm()
+
         return render(request , 'app/agregarProductos.html' , {'form':form})
 
-
+""" 
 def eliminar_productos(request ,producto_id):
 
+    # pylint: disable=no-member
     producto =  Producto.objects.get(id=producto_id)
 
-    try:
-        os.remove(os.path.join(settings.MEDIA_ROOT ,str(producto.imagen)))
+    
+        #os.remove(os.path.join(settings.MEDIA_ROOT ,str(producto.imagen)))
         
-    finally:
-         producto.delete() 
-   
+    
+    producto.estado =  not producto.estado 
+
+    producto.save()
+
+ """
+
+def cambiar_estado(request ,producto_id):
+
+    # pylint: disable=no-member
+    producto =  Producto.objects.get(id=producto_id)
+
+    
+        #os.remove(os.path.join(settings.MEDIA_ROOT ,str(producto.imagen)))
+        
+    
+    producto.estado =  not producto.estado 
+
+    producto.save()
 
    
 
@@ -52,7 +91,7 @@ def eliminar_productos(request ,producto_id):
 
 
 def editar_productos(request , id): 
-
+    # pylint: disable=no-member
     producto = Producto.objects.get(id=id)
     nombre_imagen =  str(producto.imagen)
     form =  ProductoForm(instance=producto)
@@ -64,7 +103,7 @@ def editar_productos(request , id):
 
         if form.is_valid():
             
-           #os.remove(os.path.join(settings.MEDIA_ROOT ,nombre_imagen))
+            #os.remove(os.path.join(settings.MEDIA_ROOT ,nombre_imagen))
             producto = form.save(commit=False)
             
             producto.save()
@@ -75,21 +114,41 @@ def editar_productos(request , id):
 
 
 
-def  filtro_precio(request):
 
-   
-    productos  = Producto.objects.all()
+ 
+
+
+def catalogo_producto(request):
+    print("entrada")
+    queryset = request.GET.get("buscar")
+    
+    # pylint: disable=no-member
+    productos = Producto.objects.filter(estado= True )
+    print("ss")
+    if queryset:
+        print("hola")
+        productos = Producto.objects.filter( 
+            Q(nombre__icontains = queryset)|
+            Q(descripcion__icontains =queryset)
+        ).distinct()
+        print("chao")
+        return HttpResponseRedirect('catalogo')
     filtro = 0
     
     if request.POST.get('filtro'):
         filtro = request.POST.get('filtro')
 
         productos  = Producto.objects.all().order_by(switch(filtro))
+ 
+    return render(request, 'app/catalogo.html' ,{'productos':productos ,'filtro':filtro})
 
-    return render(request, 'app/listadoProducto.html',{'productos':productos ,'filtro':filtro})
 
 
+def detalle_productos(request, id_producto):
 
-def catalogo_producto(request):
-    
-    return render(request, 'app/catalogo.html' ,{})
+    # pylint: disable=no-member
+    producto = Producto.objects.get(id=id_producto)
+
+    return render(request , 'app/detalle.html' , {'p':producto} )
+
+

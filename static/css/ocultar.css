@@ -1,0 +1,7 @@
+#formulario fieldset {
+  display: flexbox;
+}
+
+#formulario fieldset:not(:first-of-type) {
+  display: none;
+}

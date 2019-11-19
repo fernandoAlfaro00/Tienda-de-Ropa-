@@ -18,11 +18,27 @@ from django.urls import path ,include
 from django.conf import settings 
 from django.conf.urls.static import static
 
-urlpatterns = [
+""" 
+
     path('admin/', admin.site.urls),
     path('', include('mantenedorProductos.urls')),
+<<<<<<< HEAD
     path('', include('mantenedorUsuarios.urls')),
+    
+=======
+    ###ojo aqui /ficha no es necesario cuando pones path('/ficha', include('mantenedorUsuarios.urls')),
+    cuando hace path('', include('mantenedorProductos.urls'))  lo que esta haciendo es importar todas
+    las urls definidas en  el mantenedor de usuario
 
+>>>>>>> 970d4daadbd2ecfc54575784de3c88d7d40e6a4e
+    
+     """
+urlpatterns = [
+    
+    path('admin/', admin.site.urls),
+    path('', include('mantenedorProductos.urls')),
+    path('', include('mantenedorUsuarios.urls'))
+    
     
     
 
@@ -33,3 +49,8 @@ urlpatterns = [
 
 
 urlpatterns += static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
+
+
+admin.site.site_header = "Adminitracion de Mis poleras"
+admin.site.index_title = "Modulos"
+admin.site.site_title =  "Mis Poleras"
