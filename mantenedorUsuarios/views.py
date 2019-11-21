@@ -69,14 +69,6 @@ class SecretPage(LoginRequiredMixin, TemplateView):
 
 
 
-def salir(request):
-    logout(request)
-    return redirect('home')
-
-def entrar(request):
-    login(request)
-    return redirect('home')
-
 def cargar_Comunas(request):
     region = request.GET.get('region')
     comunas = Comuna.objects.filter(region_id=region).order_by('nombre')
