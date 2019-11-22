@@ -10,7 +10,7 @@ class PerfilForm(forms.ModelForm):
     class Meta:
       
         model=Perfil
-        fields = ['run' , 'telefono' ,'region' , 'fecha_nacimiento','comuna','vivienda',]
+        fields = ['run' , 'telefono' ,'region', 'fecha_nacimiento','comuna','vivienda',]
         widgets = {
             'fecha_nacimiento' : forms.SelectDateWidget(years=range(1945 ,dt.today().year)) 
         }
@@ -33,10 +33,6 @@ class PerfilForm(forms.ModelForm):
                 
             }
             ,
-            'fecha_nacimiento': {
-                'required':'Por favor Seleccione una fecha_nacimiento ',
-                
-            }
         }
 
        

@@ -29,7 +29,7 @@
         required: true
       },
       comuna: {
-        required: true
+        required: false
       },
       vivienda: {
         required: true
@@ -73,7 +73,7 @@
     }
   });
 
-  jQuery.validator.addMethod("accept", function(value, element, param) {
+  jQuery.validator.addMethod("accept", function (value, element, param) {
     return value.match(new RegExp("." + param + "$"));
   });
 }
