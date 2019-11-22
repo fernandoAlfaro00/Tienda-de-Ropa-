@@ -33,14 +33,7 @@ class Producto(ModeloBase):
         
         return self.nombre
 
-    def clean_descuento(self):
-
-        if (self.descuento < 0):
-
-            raise ValidationError("el descuento tiene que ser un numero positivo")
-        elif (self.descuento > 100):
-
-            raise  ValidationError("El descuento  no puede ser mayor a 100%")
+   
     
     class Meta:
         verbose_name = 'Producto'
