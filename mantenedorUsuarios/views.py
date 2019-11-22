@@ -3,7 +3,7 @@ from django.shortcuts import render ,redirect
 
 from .forms  import PerfilForm , UsuarioForm
 from django.contrib.auth import  login , logout ,authenticate
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,22 +22,23 @@ def signup(request):
         usuario_form =  UsuarioForm(request.POST)
         perfil_form =  PerfilForm(request.POST)
         
-        if usuario_form.is_valid() :
+        if usuario_form.is_valid() & perfil_form.is_valid():
            
             usuario =  usuario_form.save()
 
             usuario.set_password(usuario.password)
+
             
+
             usuario.save()
-           
-           
 
             perfil = perfil_form.save(commit=False)
             
             perfil.usuario  = usuario
 
             perfil.save()
-            
+
+            login(request , usuario)
             return redirect('home')
     else:
         

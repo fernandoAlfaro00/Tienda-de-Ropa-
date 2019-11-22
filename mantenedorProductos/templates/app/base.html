@@ -9,8 +9,8 @@
     <title>{% block title%} {% endblock%}</title>
     <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
 
-    <!-- <link rel="stylesheet" href="{% static 'css/Stryle.css' %}">
- --> {% block css  %}
+    <link rel="stylesheet" href="{% static 'css/Stryle.css' %}">
+    {% block css  %}
 
     {% endblock %}
 
@@ -52,7 +52,7 @@
     </div>
 
     <script src="{% static 'js/librerias_jquery/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}'"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{%  static 'js/librerias_bootstrap/bootstrap.min.js' %}"></script>
     {% block scripts   %}
     {% endblock %}
