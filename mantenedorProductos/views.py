@@ -5,6 +5,8 @@ from django.conf import settings
 from .models  import Producto
 from django.db.models  import Q
 from .case import switch
+from .serializers import ProductoSerializer
+from rest_framework import generics
 import os
 
 
@@ -87,7 +89,7 @@ def cambiar_estado(request ,producto_id):
    
 
 
-    return redirect('/listadoProductos') 
+    return redirect('listadoProductos') 
 
 
 def editar_productos(request , id): 
@@ -119,20 +121,19 @@ def editar_productos(request , id):
 
 
 def catalogo_producto(request):
-    print("entrada")
+    
     queryset = request.GET.get("buscar")
     
     # pylint: disable=no-member
     productos = Producto.objects.filter(estado= True )
-    print("ss")
+    
     if queryset:
-        print("hola")
+        
         productos = Producto.objects.filter( 
             Q(nombre__icontains = queryset)|
             Q(descripcion__icontains =queryset)
         ).distinct()
-        print("chao")
-        return HttpResponseRedirect('catalogo')
+        
     filtro = 0
     
     if request.POST.get('filtro'):
@@ -152,3 +153,15 @@ def detalle_productos(request, id_producto):
     return render(request , 'app/detalle.html' , {'p':producto} )
 
 
+
+class  API_objects(generics.ListCreateAPIView):
+    # pylint: disable=no-member
+
+    queryset =  Producto.objects.all()
+    serializer_class = ProductoSerializer
+
+class  API_objects_details(generics.RetrieveUpdateDestroyAPIView):
+    # pylint: disable=no-member
+
+    queryset =  Producto.objects.all()
+    serializer_class = ProductoSerializer

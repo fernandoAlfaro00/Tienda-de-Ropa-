@@ -15,6 +15,10 @@
 
 <body>
     <div class="container">
+
+        <div class="mb-5">
+            {% include "app/navbar.html" %}
+        </div>
         <h1>Agregar Poleras</h1>
         <form method="POST" action="#" enctype="multipart/form-data">
             {% csrf_token %}

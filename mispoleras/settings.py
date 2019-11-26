@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mantenedorProductos.apps.MantenedorproductosConfig',
     'phonenumber_field',
     'colorful',
+    'rest_framework',
     'crispy_forms',
     'colorfield',
     'mantenedorUsuarios',

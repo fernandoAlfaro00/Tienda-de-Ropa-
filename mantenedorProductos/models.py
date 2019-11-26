@@ -3,6 +3,7 @@ from colorful.fields import RGBColorField
 from colorfield.fields import ColorField
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator 
+
 class ModeloBase(models.Model):
     
     id = models.AutoField(primary_key = True)
@@ -40,6 +41,11 @@ class Producto(ModeloBase):
         verbose_name_plural = 'Productos'
 
     
+
+
+#Modelo para las  Api 
+
+
 
 
 	
