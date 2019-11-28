@@ -7,6 +7,7 @@ from django.db.models  import Q
 from .case import switch
 from .serializers import ProductoSerializer
 from rest_framework import generics
+from django.contrib.auth.decorators import login_required ,permission_required
 import os
 
 
@@ -28,7 +29,8 @@ def index(request):
         return HttpResponseRedirect('catalogo')
     return render(request , 'app/index.html')
 
-
+@login_required
+@permission_required('mantenedorProductos.change_producto', raise_exception=True)
 def lista_productos(request):
     # pylint: disable=no-member
     productos = Producto.objects.all()
@@ -37,7 +39,8 @@ def lista_productos(request):
 
     return render(request ,'app/listadoProducto.html',datos)
 
-
+@login_required
+@permission_required('mantenedorProductos.add_producto', raise_exception=True)
 def agregar_productos(request):
 
     if request.method == "POST":
@@ -72,7 +75,8 @@ def eliminar_productos(request ,producto_id):
     producto.save()
 
  """
-
+@login_required
+@permission_required('mantenedorProductos.change_producto', raise_exception=True)
 def cambiar_estado(request ,producto_id):
 
     # pylint: disable=no-member
@@ -91,7 +95,8 @@ def cambiar_estado(request ,producto_id):
 
     return redirect('listadoProductos') 
 
-
+@login_required
+@permission_required('mantenedorProductos.change_producto', raise_exception=True)
 def editar_productos(request , id): 
     # pylint: disable=no-member
     producto = Producto.objects.get(id=id)

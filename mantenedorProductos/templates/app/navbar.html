@@ -53,12 +53,15 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             {% if user.is_authenticated %}
+                            <!-- la logica soguiente es de prueba -->
+
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'secret' %}">Secret Page</a>
+                                <a class="nav-link" href="{% url 'AgregarProductos' %}">Añadir de Producto</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'secret' %}">Secret Page</a>
+                                <a class="nav-link" href="{% url 'listadoProductos' %}">Listado de Productos</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'secret2' %}">Secret Page 2</a>
                             </li>
@@ -80,4 +83,5 @@
         </div>
 
     </div>
+
 </body>

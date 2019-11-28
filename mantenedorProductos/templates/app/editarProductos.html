@@ -1,50 +1,36 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Productos</title>
-    <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
-</head>
+<div class="content mt-4">
+    <h1>Modificar Poleras</h1>
+    <form method="POST" action="#" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">{{form.nombre|as_crispy_field}}</div>
+            <div class="form-group col-md-6 mb-0">{{form.codigo|as_crispy_field}}</div>
+            <div class="form-group col-md-6 mb-0">{{form.precio_comprar|as_crispy_field}}</div>
+            <div class="form-group col-md-6 mb-0">{{form.precio_venta|as_crispy_field}}</div>
+            <div class="form-group col-md-3 mb-0">{{form.descuento|as_crispy_field}}</div>
+            <div class="form-group col-md-3 mb-0">{{form.numero_talla|as_crispy_field}}</div>
+            <div class="form-group col-md-3 mb-0">{{form.tipo_tela|as_crispy_field}}</div>
+            <div class="form-group col-md-3 mb-0">{{form.color|as_crispy_field}}</div>
 
-<body>
-    <div class="container">
-        <div class="mb-5">
-            {% include "app/navbar.html" %}
+            <div class="form-group col-md-6 mb-0">{{form.descripcion|as_crispy_field}}</div>
+            <div class="form-group col-md-6 mb-0">{{form.imagen|as_crispy_field}}</div>
+
+
         </div>
-        <h1>Modificar Poleras</h1>
-        <form method="POST" action="#" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-6 mb-0">{{form.nombre|as_crispy_field}}</div>
-                <div class="form-group col-md-6 mb-0">{{form.codigo|as_crispy_field}}</div>
-                <div class="form-group col-md-6 mb-0">{{form.precio_comprar|as_crispy_field}}</div>
-                <div class="form-group col-md-6 mb-0">{{form.precio_venta|as_crispy_field}}</div>
-                <div class="form-group col-md-3 mb-0">{{form.descuento|as_crispy_field}}</div>
-                <div class="form-group col-md-3 mb-0">{{form.numero_talla|as_crispy_field}}</div>
-                <div class="form-group col-md-3 mb-0">{{form.tipo_tela|as_crispy_field}}</div>
-                <div class="form-group col-md-3 mb-0">{{form.color|as_crispy_field}}</div>
 
-                <div class="form-group col-md-6 mb-0">{{form.descripcion|as_crispy_field}}</div>
-                <div class="form-group col-md-6 mb-0">{{form.imagen|as_crispy_field}}</div>
+        <div class="d-flex justify-content-between align-items-center mt-3  mb-4">
+            <button type="submit" class="btn btn-primary">Modificar</button>
+            <a href="{% url 'listadoProductos' %}" class="btn btn-outline-primary">Ir al Listado</a>
+        </div>
+    </form>
 
+</div>
 
-            </div>
-
-            <button type="submit" class="btn btn-primary  mt-5">Modificar</button>
-        </form>
-
-        <div class="d-flex justify-content-end"> <a href="{% url 'listadoProductos' %}">Ir al Listado</a> </div>
-    </div>
-
-
-
-</body>
-
-</html>
+{% endblock content %}
