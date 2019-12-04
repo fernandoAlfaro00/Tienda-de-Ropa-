@@ -1,0 +1,31 @@
+.img-content {
+    
+    height: 30px;
+    width: 30px;
+}
+
+.img-content img {
+    
+    height: 30px;
+    width: 30px;
+}
+
+.img-content p  {
+    
+    display: none;
+}
+
+
+.img-content:hover img {
+    position: relative;
+    height: 225px;
+    width: 225px;
+}
+
+
+.img-content:hover p  {
+    width: 225px;
+   
+    position: relative;
+    display: block;
+}

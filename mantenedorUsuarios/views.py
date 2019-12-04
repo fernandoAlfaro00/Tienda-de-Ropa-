@@ -1,22 +1,21 @@
 
 from django.shortcuts import render ,redirect
-
 from .forms  import PerfilForm , UsuarioForm
 from django.contrib.auth import  login , logout ,authenticate
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import Group
 from .models import Comuna
 
 
 
 
+
 def signup(request):
-
-    
-
-
+ 
+    datos = {'usuario_form': UsuarioForm() , 'perfil_form': PerfilForm()}
     if request.method == 'POST':
         #form = UserCreationForm(request.POST)
         usuario_form =  UsuarioForm(request.POST)
@@ -36,16 +35,20 @@ def signup(request):
             
             perfil.usuario  = usuario
 
+            grupo =  Group.objects.get(name='Usuarios')
+
+            
             perfil.save()
+
+            grupo.user_set.add(perfil.usuario)
+            
 
             login(request , usuario)
             return redirect('home')
-    else:
-        
-        usuario_form =  UsuarioForm()
-        perfil_form =  PerfilForm()
-        datos = {'usuario_form': usuario_form, 'perfil_form':perfil_form}
-        return render(request, 'registration/signup.html',datos)
+        datos['usuario_form'] = usuario_form
+        datos['perfil_form'] = perfil_form
+   
+    return render(request, 'registration/signup.html',datos)
 
 
 

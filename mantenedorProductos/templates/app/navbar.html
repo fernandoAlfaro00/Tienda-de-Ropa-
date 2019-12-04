@@ -1,13 +1,14 @@
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/color_fondo.css' %}">
 
 <body>
     <div id="header">
-        <div class="row" id="header-top">
+        <div class="row " id="header-top">
             <!-- todo el contenido debe ir dentro de columnas(col) -->
             <!-- Y las columnas deben ir dentro de las filas (row) -->
 
             <div class="col-12" id="container-logo">
-                <img src="{% static 'img//logohead.png' %}" class="img-fluid" alt="">
+                <img src="{% static 'img//logohead.png' %}" class="img-fluid " alt="">
             </div>
         </div>
         <div class="row" id="header-bottom">
@@ -53,12 +54,17 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             {% if user.is_authenticated %}
+
+                            {% if perms.mantenedorProductos.add_producto %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'secret' %}">Secret Page</a>
+                                <a class="nav-link" href="{% url 'AgregarProductos' %}">Añadir de Producto</a>
                             </li>
+                            {% endif %}
+                            {% if perms.mantenedorProductos.change_producto %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'secret' %}">Secret Page</a>
+                                <a class="nav-link" href="{% url 'listadoProductos' %}">Listado de Productos</a>
                             </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'secret2' %}">Secret Page 2</a>
                             </li>
@@ -66,11 +72,13 @@
 
 
                         </ul>
+
                         <form class="form-inline my-2 my-lg-0" method="GET">
                             <input class="form-control mr-sm-2" type="text" placeholder="Busca algo" aria-label="Search"
                                 name="buscar">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                         </form>
+
 
 
                     </div>
@@ -80,4 +88,5 @@
         </div>
 
     </div>
+
 </body>

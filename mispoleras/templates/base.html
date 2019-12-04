@@ -6,7 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{% static 'css/estilos_bootstrap/bootstrap.min.css' %}">
+
+
   <title>{% block title %}REGISTRO{% endblock %}</title>
+  {% block css  %}
+
+  {% endblock %}
 </head>
 
 <body>
@@ -26,6 +31,11 @@
   <script src="{% static 'js/comuna_ajax.js' %}"></script>
   <script src="{% static 'js/librerias_jquery/jquery.validate.min.js' %}"></script>
   <script src="{% static 'js/validador.js' %}"></script>
+
+
+  {% block scripts   %}
+
+  {% endblock %}
 
 
 
