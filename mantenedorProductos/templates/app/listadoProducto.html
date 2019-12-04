@@ -37,6 +37,9 @@
                     <th>descripcion</th>
                     <th>Modificar</th>
                     <th>Estado</th>
+                    {% if perms.mantenedorProductos.delete_producto %}
+                    <th>Eliminar</th>
+                    {% endif %}
 
                 </tr>
             </thead>
@@ -68,7 +71,12 @@
                             {% else %}
                             <div class="badge badge-danger">Desabilitado</div>
                             {% endif %}
-                        </a></td>
+                        </a>
+                    </td>
+                    {% if perms.mantenedorProductos.delete_producto %}
+
+                    <td><a class="btn btn-outline-danger" href="eliminarProducto/{{ p.id }}">Eliminar</a></td>
+                    {% endif %}
                 </tr>
 
                 {% endfor%}

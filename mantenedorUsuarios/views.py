@@ -4,7 +4,7 @@ from .forms  import PerfilForm , UsuarioForm
 from django.contrib.auth import  login , logout ,authenticate
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from .models import Comuna
@@ -12,10 +12,9 @@ from .models import Comuna
 
 
 
+
 def signup(request):
-
-    
-
+ 
     datos = {'usuario_form': UsuarioForm() , 'perfil_form': PerfilForm()}
     if request.method == 'POST':
         #form = UserCreationForm(request.POST)

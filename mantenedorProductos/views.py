@@ -57,7 +57,8 @@ def agregar_productos(request):
 
     return render(request , 'app/agregarProductos.html' , datos )
 
-""" 
+@login_required
+@permission_required('mantenedorProducto.delete_producto', raise_exception=True) 
 def eliminar_productos(request ,producto_id):
 
     # pylint: disable=no-member
@@ -71,7 +72,7 @@ def eliminar_productos(request ,producto_id):
 
     producto.save()
 
- """
+
 @login_required
 @permission_required('mantenedorProductos.change_producto', raise_exception=True)
 def cambiar_estado(request ,producto_id):

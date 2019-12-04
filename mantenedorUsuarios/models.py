@@ -27,7 +27,7 @@ VIVENDA_CHOICES =[(1,'Casa con patio Grande'),
 class Perfil(models.Model):
     usuario = models.OneToOneField( User, on_delete=models.CASCADE)
     run = models.CharField( unique=True , max_length=15)
-    telefono =  models.PositiveIntegerField(default=0)
+    telefono =  models.PositiveIntegerField(default=0, validators=[MaxLengthValidator(900**3) ] )
     fecha_nacimiento = models.DateField(null=False , blank=False  , default='2001-10-01')
     region = models.ForeignKey(Region , on_delete=models.SET_NULL , null=True)
     comuna = models.ForeignKey(Comuna , on_delete=models.SET_NULL , null=True)
