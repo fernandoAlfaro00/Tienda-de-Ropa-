@@ -2,12 +2,12 @@
 
 <body>
     <div id="header">
-        <div class="row" id="header-top">
+        <div class="row " id="header-top">
             <!-- todo el contenido debe ir dentro de columnas(col) -->
             <!-- Y las columnas deben ir dentro de las filas (row) -->
 
             <div class="col-12" id="container-logo">
-                <img src="{% static 'img//logohead.png' %}" class="img-fluid" alt="">
+                <img src="{% static 'img//logohead.png' %}" class="img-fluid " alt="">
             </div>
         </div>
         <div class="row" id="header-bottom">
@@ -53,15 +53,17 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             {% if user.is_authenticated %}
-                            <!-- la logica soguiente es de prueba -->
 
+                            {% if perms.mantenedorProductos.add_producto %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'AgregarProductos' %}">Añadir de Producto</a>
                             </li>
+                            {% endif %}
+                            {% if perms.mantenedorProductos.change_producto %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'listadoProductos' %}">Listado de Productos</a>
                             </li>
-
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'secret2' %}">Secret Page 2</a>
                             </li>

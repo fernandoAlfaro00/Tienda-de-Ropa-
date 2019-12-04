@@ -109,7 +109,13 @@
             <img class="card-img" src="{ static 'img/noDisponible.jfif' }" alt="Card image">
 
             {% endif %}
-            <p class="card-img-overlay text-primary ">{{ p.descuento }}</p>
+            {% if  p.descuento > 0 %}
+            <p class="card-img-overlay text-primary ">{{ p.descuento }}% de Descuento</p>
+            {% else %}
+            <p class="card-img-overlay text-primary "></p>
+
+            {% endif %}
+
           </div>
           <div class="card-body">
             <h4 class="card-title">{{ p.nombre }}</h4>

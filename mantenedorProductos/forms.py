@@ -1,5 +1,6 @@
 from django import forms 
 from .models import Producto
+from django.core.validators import validate_integer
 from colorfield.fields import ColorWidget ,ColorField
 
 class ProductoForm(forms.ModelForm):
@@ -12,7 +13,7 @@ class ProductoForm(forms.ModelForm):
         }
         widgets = {
 
-            'precio_comprar': forms.NumberInput(attrs={
+            'precio_comprar': forms.NumberInput(attrs={ 
                
             }  ),
             'precio_venta': forms.NumberInput(
@@ -25,12 +26,12 @@ class ProductoForm(forms.ModelForm):
                 }
             ),
             'nombre':forms.TextInput(
-                attrs={
+                attrs={ 
                 
             } 
             ),
             'codigo':forms.NumberInput(
-                attrs={
+                attrs={'max_length':10
                 
             } 
             ),
@@ -55,5 +56,5 @@ class ProductoForm(forms.ModelForm):
             
         }
 
-
+    
         

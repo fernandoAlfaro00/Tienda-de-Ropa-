@@ -21,12 +21,12 @@ class Producto(ModeloBase):
     descripcion =  models.TextField(max_length=40, null=False ,blank=True )
     marca   =  models.CharField(max_length=50 ,  blank=False ,  null=False)
     color = RGBColorField(colors=['#FF0000', '#00FF00', '#0000FF'])
-    precio_comprar = models.PositiveIntegerField(default=10, validators=[MinValueValidator(0)])
+    precio_comprar = models.PositiveIntegerField(default=0  )
     precio_venta = models.IntegerField(null=False ,  blank=False ,  validators=[MinValueValidator(0)] )
     numero_talla = models.CharField(max_length=40)
-    codigo =  models.IntegerField(null=False)
-    tipo_tela = models.CharField(max_length=40)
-    descuento = models.PositiveIntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(100)])
+    codigo =  models.PositiveIntegerField(unique=True)
+    tipo_tela = models.CharField(max_length=10 )
+    descuento = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     imagen = models.ImageField()
     cantidad =  models.IntegerField(default=0 , null=False  , blank=False )
 
@@ -43,7 +43,6 @@ class Producto(ModeloBase):
     
 
 
-#Modelo para las  Api 
 
 
 
