@@ -9,6 +9,9 @@
 
 
   <title>{% block title %}REGISTRO{% endblock %}</title>
+  {% block css  %}
+
+  {% endblock %}
 </head>
 
 <body>
@@ -29,6 +32,10 @@
   <script src="{% static 'js/librerias_jquery/jquery.validate.min.js' %}"></script>
   <script src="{% static 'js/validador.js' %}"></script>
 
+
+  {% block scripts   %}
+
+  {% endblock %}
 
 
 

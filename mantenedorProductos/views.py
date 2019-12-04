@@ -9,6 +9,7 @@ from .serializers import ProductoSerializer
 from rest_framework import generics
 from django.contrib.auth.decorators import login_required ,permission_required
 import os
+from django.core.paginator import Paginator
 
 
     
@@ -34,31 +35,27 @@ def index(request):
 def lista_productos(request):
     # pylint: disable=no-member
     productos = Producto.objects.all()
-
     datos  = {'productos':productos}
-
     return render(request ,'app/listadoProducto.html',datos)
 
 @login_required
 @permission_required('mantenedorProductos.add_producto', raise_exception=True)
 def agregar_productos(request):
-
-    if request.method == "POST":
+    datos = {'form':ProductoForm()}
+    if request.method == 'POST':
 
         form = ProductoForm(request.POST , files=request.FILES)
 
         if  form.is_valid():
-           
-            model_instance = form.save(commit=False)
-            model_instance.save()
+
+            producto = form.save(commit=False)
             
-            return redirect('/AgregarProductos')
+            producto.save()
+            
+        datos['form'] = form
+        
 
-    else:
-
-        form  = ProductoForm()
-
-        return render(request , 'app/agregarProductos.html' , {'form':form})
+    return render(request , 'app/agregarProductos.html' , datos )
 
 """ 
 def eliminar_productos(request ,producto_id):
@@ -90,9 +87,6 @@ def cambiar_estado(request ,producto_id):
 
     producto.save()
 
-   
-
-
     return redirect('listadoProductos') 
 
 @login_required
@@ -100,7 +94,7 @@ def cambiar_estado(request ,producto_id):
 def editar_productos(request , id): 
     # pylint: disable=no-member
     producto = Producto.objects.get(id=id)
-    nombre_imagen =  str(producto.imagen)
+    #nombre_imagen =  str(producto.imagen)
     form =  ProductoForm(instance=producto)
 
     if request.method == 'POST':
@@ -145,7 +139,10 @@ def catalogo_producto(request):
         filtro = request.POST.get('filtro')
 
         productos  = Producto.objects.all().order_by(switch(filtro))
- 
+
+    paginator = Paginator(productos, 5)
+    page  = request.GET.get('page')
+    productos =  paginator.get_page(page)
     return render(request, 'app/catalogo.html' ,{'productos':productos ,'filtro':filtro})
 
 
@@ -164,6 +161,7 @@ class  API_objects(generics.ListCreateAPIView):
 
     queryset =  Producto.objects.all()
     serializer_class = ProductoSerializer
+
 
 class  API_objects_details(generics.RetrieveUpdateDestroyAPIView):
     # pylint: disable=no-member

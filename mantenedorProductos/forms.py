@@ -1,6 +1,7 @@
 from django import forms 
 from .models import Producto
 from django.core.validators import validate_integer
+from django.core.files.images import get_image_dimensions
 from colorfield.fields import ColorWidget ,ColorField
 
 class ProductoForm(forms.ModelForm):
@@ -31,7 +32,7 @@ class ProductoForm(forms.ModelForm):
             } 
             ),
             'codigo':forms.NumberInput(
-                attrs={'max_length':10
+                attrs={
                 
             } 
             ),
@@ -57,4 +58,17 @@ class ProductoForm(forms.ModelForm):
         }
 
     
+    def clean_imagen(self):
+              
+       img = self.cleaned_data.get("imagen")
+       high = 225
+       wide = 225
+       w, h = get_image_dimensions(img)
+
+       if w != wide:
+           raise forms.ValidationError("La imagen tiene %i pixel ancho. debe tener %ipx de ancho" % (w, wide) )
+       if h != high:
+           raise forms.ValidationError("La imagen tiene %i pixel alto. debe tener %ipx de alto"  % (h, high) )
+            
+       return img
         

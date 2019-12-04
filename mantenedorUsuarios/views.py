@@ -16,7 +16,7 @@ def signup(request):
 
     
 
-
+    datos = {'usuario_form': UsuarioForm() , 'perfil_form': PerfilForm()}
     if request.method == 'POST':
         #form = UserCreationForm(request.POST)
         usuario_form =  UsuarioForm(request.POST)
@@ -46,12 +46,10 @@ def signup(request):
 
             login(request , usuario)
             return redirect('home')
-    else:
-        
-        usuario_form =  UsuarioForm()
-        perfil_form =  PerfilForm()
-        datos = {'usuario_form': usuario_form, 'perfil_form':perfil_form}
-        return render(request, 'registration/signup.html',datos)
+        datos['usuario_form'] = usuario_form
+        datos['perfil_form'] = perfil_form
+   
+    return render(request, 'registration/signup.html',datos)
 
 
 
